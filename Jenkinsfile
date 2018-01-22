@@ -1,7 +1,7 @@
 pipeline {
    agent any
    options { skipDefaultCheckout() } 
-   triggers { scm('* * * * *') }
+   properties([pipelineTriggers([pollSCM('* * * * *')])])
    stages {
        stage("checkout") {
            steps {
