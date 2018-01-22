@@ -2,3 +2,4 @@ Test case org.jenkinsci.plugins.pretestedintegration.acceptance.scm.git.GHI98_Su
 one
 one
 three
+four
