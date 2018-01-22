@@ -1,12 +1,10 @@
 pipeline {
    agent any
-   triggers {
-       pollSCM('* * * * *')	
-   } 
+   options { skipDefaultCheckout() }
    stages {
        stage("checkout") {
            steps {
-		echo "Hellow from some stage"
+		checkout([$class: 'GitSCM', branches: [[name: '*/ready/**']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'CleanBeforeCheckout'], pretestedIntegration(gitIntegrationStrategy: squash(), integrationBranch: 'master', repoName: 'origin')], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/praqma-test/pretested-integration-plugin-test-repo.git']]])
 		sh 'cat testOutput.txt'
            }
        }
